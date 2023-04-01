@@ -436,4 +436,43 @@ colnames(dm_pv_EH_296M)<-c("pc5","adrian")
 
 View(dm_pv_EH_296M)
 
+summary_lm_M_GDP_rf <- summary(lm(as.matrix(log(baseSGS[,1:4])) ~ log(baseSGS[,5]) +  log(yields[,1])))
 
+Table1<-matrix(c(
+	summary_lm_M_GDP_rf$`Response M1`$coefficients[1,1],		
+	summary_lm_M_GDP_rf$`Response M1`$coefficients[1,2],		
+    summary_lm_M_GDP_rf$`Response M2mnsM1`$coefficients[1,1],
+    summary_lm_M_GDP_rf$`Response M2mnsM1`$coefficients[1,2],
+	summary_lm_M_GDP_rf$`Response M3mnsM2`$coefficients[1,1],
+	summary_lm_M_GDP_rf$`Response M3mnsM2`$coefficients[1,2],
+	summary_lm_M_GDP_rf$`Response M4mnsM3`$coefficients[1,1],
+	summary_lm_M_GDP_rf$`Response M4mnsM3`$coefficients[1,2],
+	summary_lm_M_GDP_rf$`Response M1`$coefficients[2,1],		
+	summary_lm_M_GDP_rf$`Response M1`$coefficients[2,2],		
+    summary_lm_M_GDP_rf$`Response M2mnsM1`$coefficients[2,1],
+    summary_lm_M_GDP_rf$`Response M2mnsM1`$coefficients[2,2],
+	summary_lm_M_GDP_rf$`Response M3mnsM2`$coefficients[2,1],
+	summary_lm_M_GDP_rf$`Response M3mnsM2`$coefficients[2,2],
+	summary_lm_M_GDP_rf$`Response M4mnsM3`$coefficients[2,1],
+	summary_lm_M_GDP_rf$`Response M4mnsM3`$coefficients[2,2],
+	summary_lm_M_GDP_rf$`Response M1`$coefficients[3,1],		
+	summary_lm_M_GDP_rf$`Response M1`$coefficients[3,2],		
+    summary_lm_M_GDP_rf$`Response M2mnsM1`$coefficients[3,1],
+    summary_lm_M_GDP_rf$`Response M2mnsM1`$coefficients[3,2],
+	summary_lm_M_GDP_rf$`Response M3mnsM2`$coefficients[3,1],
+	summary_lm_M_GDP_rf$`Response M3mnsM2`$coefficients[3,2],
+	summary_lm_M_GDP_rf$`Response M4mnsM3`$coefficients[3,1],
+	summary_lm_M_GDP_rf$`Response M4mnsM3`$coefficients[3,2],
+	summary_lm_M_GDP_rf$`Response M1`$adj.r.squared,
+ 0,
+    summary_lm_M_GDP_rf$`Response M2mnsM1`$adj.r.squared,
+ 0,
+	summary_lm_M_GDP_rf$`Response M3mnsM2`$adj.r.squared,
+ 0,
+	summary_lm_M_GDP_rf$`Response M4mnsM3`$adj.r.squared,
+ 0
+			),8,4)
+
+
+colnames(Table1)<-c("gamma_0","gamma_1","gamma_2","Adj R2")
+row.names(Table1)<-c("M1","SE","M2-M1","SE","M3-M2","SE","M4-M3","SE")
