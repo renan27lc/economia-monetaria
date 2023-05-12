@@ -436,7 +436,13 @@ colnames(dm_pv_EH_296M)<-c("pc5","adrian")
 
 View(dm_pv_EH_296M)
 
-summary_lm_M_GDP_rf <- summary(lm(as.matrix(log(baseSGS[,1:4])) ~ log(baseSGS[,5]) +  log(yields[,1])))
+
+defa<-as.matrix(log(baseSGS[2:234,1])-log(baseSGS[1:233,1]))
+summary_lm_M_GDP_rf_lag2 <- summary(lm(as.matrix(log(baseSGS[3:235,1])-log(baseSGS[2:234,1])) ~ defa +  log(baseSGS[3:235,5]) +  log(yields[3:235,1])))
+summary_lm_M_GDP_rf_lag2 <- summary(lm(as.matrix(log(baseSGS[,2])) ~ log(lag(baseSGS[,2],1)) + log(lag(baseSGS[,2],2)) + log(baseSGS[,5]) +  log(yields[,1])))
+summary_lm_M_GDP_rf_lag2 <- summary(lm(as.matrix(log(baseSGS[,3])) ~ log(lag(baseSGS[,3],1)) + log(lag(baseSGS[,3],2)) + log(baseSGS[,5]) +  log(yields[,1])))
+summary_lm_M_GDP_rf_lag2 <- summary(lm(as.matrix(log(baseSGS[,4])) ~ log(lag(baseSGS[,4],1)) + log(lag(baseSGS[,4],2)) + log(baseSGS[,5]) +  log(yields[,1])))
+
 
 Table1<-matrix(c(
 	summary_lm_M_GDP_rf$`Response M1`$coefficients[1,1],		
